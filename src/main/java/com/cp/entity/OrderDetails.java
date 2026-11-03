@@ -18,14 +18,14 @@ public class OrderDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
-	private Long restaurntKey;
+	private Long outletKey;
 	private Long cuisineKey;
 	private Long orderBy;
 	
 	private Integer quantity;   //I added this field
 	@ManyToOne
-	@JoinColumn(name="masterorderId",nullable=false)
-	private MasterOrderDetails orderDetails;
+	@JoinColumn(name="masterorderid",nullable=false)
+	private MasterOrderDetails masterOrderDetails;
 	
 	private String status;
 
@@ -47,12 +47,12 @@ public class OrderDetails {
 		this.orderId = orderId;
 	}
 
-	public Long getRestaurntKey() {
-		return restaurntKey;
+	public Long getOutletKey() {
+		return outletKey;
 	}
 
-	public void setRestaurntKey(Long restaurntKey) {
-		this.restaurntKey = restaurntKey;
+	public void setOutletKey(Long outletKey) {
+		this.outletKey = outletKey;
 	}
 
 	public Long getCuisineKey() {
@@ -79,12 +79,12 @@ public class OrderDetails {
 		this.quantity = quantity;
 	}
 
-	public MasterOrderDetails getOrderDetails() {
-		return orderDetails;
+	public MasterOrderDetails getMasterOrderDetails() {
+		return masterOrderDetails;
 	}
 
-	public void setOrderDetails(MasterOrderDetails orderDetails) {
-		this.orderDetails = orderDetails;
+	public void setMasterOrderDetails(MasterOrderDetails masterOrderDetails) {
+		this.masterOrderDetails = masterOrderDetails;
 	}
 
 	public String getStatus() {

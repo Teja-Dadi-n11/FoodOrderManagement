@@ -1,5 +1,6 @@
 package com.cp.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class CuisineDetails {
 	@JoinColumn(name="menukey",nullable=false)
 	private MenuDetails menuDetails;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn(name="cuisineCategoryKey",nullable = false)
 	private CuisineCategory cuisineCategory;
 

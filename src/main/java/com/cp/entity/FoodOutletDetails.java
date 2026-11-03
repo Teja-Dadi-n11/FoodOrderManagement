@@ -4,23 +4,26 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 
 @Entity
-@Table(name="FoodOutletDetails",schema="public")
+@Table(
+        name = "outletdetails",
+        schema = "public",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        columnNames = {"outlet_name", "outlet_code"}
+                )
+        }
+)
 public class FoodOutletDetails {
 	private String outletName;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long outletKey;
-	
+
+	private String outletCode;
 	private String outletDescription;
 	
 	
@@ -35,8 +38,8 @@ public class FoodOutletDetails {
 	private String outletLocation;
 
 	private Integer isActive;
-	@OneToOne
-	@JoinColumn(name = "menuKey") // Foreign key column in the RestaurantDetails table
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "menuKey") // Foreign key column in the FoodOutletDetails table
 	private MenuDetails menuDetails;
 
 	public String getOutletName() {
@@ -117,6 +120,15 @@ public class FoodOutletDetails {
 
 	public void setMenuDetails(MenuDetails menuDetails) {
 		this.menuDetails = menuDetails;
+	}
+
+
+	public String getOutletCode() {
+		return outletCode;
+	}
+
+	public void setOutletCode(String outletCode) {
+		this.outletCode = outletCode;
 	}
 
 	public Map<String,Object> toMap(){
