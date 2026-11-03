@@ -2,31 +2,24 @@ package com.cp.entity;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name="cuisineCategory",schema="public")
+@Table(name="cuisinecategory",schema="public")
 public class CuisineCategory {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cuisineCategoryKey;
 	
-	
+	//@Column(unique = true)
 	private String cuisineCateCode;
 	
 	private String categoryDescription;
 
 	private Integer isActive;
 	
-	@OneToMany(mappedBy="cuisineCategory",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="cuisineCategory")
 	private List<CuisineDetails> cuisineDetails;
 
 	public Long getCuisineCategoryKey() {

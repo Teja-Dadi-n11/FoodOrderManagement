@@ -8,6 +8,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -15,10 +18,12 @@ import jakarta.persistence.Table;
 @Table(name="masterorderdetails",schema="public")
 public class MasterOrderDetails {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long masterorderId;
 	
-	@OneToMany(mappedBy = "masterorderdetails",cascade = CascadeType.ALL)
-	private List<OrderDetails> orderdetails;
+	@OneToMany(mappedBy = "masterOrderDetails",cascade = CascadeType.ALL)
+	private List<OrderDetails> orderDetails;
 	
 	private Long customerId;
 	private String orderstatus;
@@ -39,12 +44,12 @@ public class MasterOrderDetails {
 		this.masterorderId = masterorderId;
 	}
 
-	public List<OrderDetails> getOrderdetails() {
-		return orderdetails;
+	public List<OrderDetails> getOrderDetails() {
+		return orderDetails;
 	}
 
-	public void setOrderdetails(List<OrderDetails> orderdetails) {
-		this.orderdetails = orderdetails;
+	public void setOrderDetails(List<OrderDetails> orderdetails) {
+		this.orderDetails = orderDetails;
 	}
 
 	public Long getCustomerId() {
